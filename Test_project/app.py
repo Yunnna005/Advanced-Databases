@@ -4,13 +4,15 @@ import logging
 import hashlib
 import json
 
+from config import Config
+
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 class DatabaseClient:
-    def __init__(self, couchdb_url: str = "http://admin:admin@host.docker.internal:5984", 
-                 redis_host: str = "host.docker.internal", redis_port: int = 6379,
-                 cache_ttl: int = 300):
+    def __init__(self, couchdb_url: str = Config.COUCHDB_URL, 
+                 redis_host: str = Config.REDIS_HOST, redis_port: int = Config.REDIS_PORT,
+                 cache_ttl: int = Config.CACHE_TTL):
         
         self.cache_ttl = cache_ttl
 
