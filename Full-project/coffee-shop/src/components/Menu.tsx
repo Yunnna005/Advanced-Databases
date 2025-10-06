@@ -1,6 +1,10 @@
 import MenuItem from "../components/Menu-item";
 
-export default function Menu() {
+interface MenuProps {
+  onAddToOrder: () => void;
+}
+
+export default function Menu({ onAddToOrder }: MenuProps) {
     return (
         <section className="py-8 px-4 mx-auto max-w-screen-xl text-center lg:py-16 lg:px-12">
         <h1 className="mb-4 text-4xl text-slate-800 font-extrabold tracking-tight leading-none md:text-5xl lg:text-6xl">Our Menu</h1>
@@ -11,48 +15,56 @@ export default function Menu() {
                 description="A strong and bold coffee shot, perfect for a quick pick-me-up."
                 price={2.5}
                 imageUrl="/americano.jpg"
+                onAddToOrder={onAddToOrder}
             />
             <MenuItem
                 title="Americano with Milk"
                 description="A concentrated coffee brewed by forcing hot water through finely-ground coffee."
                 price={3.0}
                 imageUrl="/americano-milk.jpg"
+                onAddToOrder={onAddToOrder}
             />
             <MenuItem
                 title="Cappuccino"
                 description="A rich and creamy coffee drink made with espresso and steamed milk."
                 price={3.5}
                 imageUrl="/cappuccino.jpg"
+                onAddToOrder={onAddToOrder}
             />
             <MenuItem
                 title="Cocao"
                 description="A rich and creamy coffee drink made with espresso and steamed milk."
                 price={3.5}
                 imageUrl="/cocao.jpg"
+                onAddToOrder={onAddToOrder}
             />
             <MenuItem
                 title="Cortado"
                 description="A rich and creamy chocolate drink made with steamed milk."
                 price={3.5}
                 imageUrl="/cortado.jpg"
+                onAddToOrder={onAddToOrder}
             />
             <MenuItem
                 title="Espresso"
                 description="A rich and creamy coffee drink made with espresso and steamed milk."
                 price={3.5}
                 imageUrl="/espresso.jpg"
+                onAddToOrder={onAddToOrder}
             />
             <MenuItem
                 title="Hot Chocolate"
                 description="A rich and creamy chocolate drink made with steamed milk."
                 price={3.5}
                 imageUrl="/hot-chocolate.jpg"
+                onAddToOrder={onAddToOrder}
             />
             <MenuItem
                 title="Latte"
                 description="A rich and creamy coffee drink made with espresso and steamed milk."
                 price={3.5}
                 imageUrl="/latte.jpg"
+                onAddToOrder={onAddToOrder}
             />
         </div>
         </section>
