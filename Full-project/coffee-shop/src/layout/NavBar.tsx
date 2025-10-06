@@ -1,8 +1,4 @@
-interface NavBarProps {
-  orderQuantity: number;
-}
-
-export default function NavBar({ orderQuantity }: NavBarProps) {
+export default function NavBar() {
     return (
         <nav className="bg-white fixed top-0 left-0 right-0 border-b border-stone-800 dark:bg-stone-800 z-50">
         <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
@@ -25,12 +21,7 @@ export default function NavBar({ orderQuantity }: NavBarProps) {
                 <a href="#" className="block py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Menu</a>
                 </li>
                 <li>
-                <a href="#" className="block py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">My Order</a>
-                    {orderQuantity > 0 && (
-                    <span className="absolute top-3 right-32 bg-red-500 text-white text-xs w-5 h-5 rounded-full flex items-center justify-center">
-                        {orderQuantity}
-                    </span>
-                    )}
+                <a href="#" className="block py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Add Product</a>
                 </li>
             </ul>
             </div>

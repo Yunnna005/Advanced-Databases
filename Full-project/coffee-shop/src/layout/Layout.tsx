@@ -1,15 +1,10 @@
 import NavBar from './NavBar'
 import Footer from './Footer'
 
-interface LayoutProps {
-  children: React.ReactNode;
-  orderQuantity: number;
-}
-
-export default function Layout({ children, orderQuantity }: LayoutProps) {
+export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <>
-      <NavBar orderQuantity={orderQuantity} />
+      <NavBar />
       {children}
       <Footer />
     </>
