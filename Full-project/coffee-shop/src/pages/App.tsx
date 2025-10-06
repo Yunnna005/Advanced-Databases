@@ -1,15 +1,20 @@
-import Hero from '../layout/Hero'
-import Menu from '../layout/Menu'
 import Layout from '../layout/Layout';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import AddProduct from './AddProduct';
 
+import Home from './Home';
 
 function App() {
 
   return (
-    <Layout>
-      <Hero />
-      <Menu/>
-    </Layout>
+    <BrowserRouter>
+      <Layout>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/add-product" element={<AddProduct />} />
+        </Routes>
+      </Layout>
+    </BrowserRouter>
   )
 }
 
