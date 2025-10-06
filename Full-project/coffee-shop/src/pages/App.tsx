@@ -1,6 +1,6 @@
 import Layout from '../layout/Layout';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import AddProduct from './AddProduct';
+import AddProduct from './AddOrder';
 
 import Home from './Home';
 
