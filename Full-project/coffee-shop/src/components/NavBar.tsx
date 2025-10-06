@@ -1,6 +1,6 @@
 export default function NavBar() {
     return (
-        <nav className="bg-white border-stone-800 dark:bg-stone-800">
+        <nav className="bg-white fixed top-0 left-0 right-0 border-b border-stone-800 dark:bg-stone-800 z-50">
         <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
             <a href="https://flowbite.com/" className="flex items-center space-x-3 rtl:space-x-reverse">
                 <img src="coffee.svg" className="h-8" alt="Coffee Shop Logo" />
