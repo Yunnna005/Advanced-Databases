@@ -1,4 +1,4 @@
-import MenuItem from "../components/Menu-item";
+import MenuItem from "./Menu-item";
 
 interface MenuProps {
   onAddToOrder: () => void;

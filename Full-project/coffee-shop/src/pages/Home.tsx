@@ -1,9 +1,8 @@
 import { useState } from 'react';
-import Footer from './components/Footer'
-import Hero from './components/Hero'
-import Menu from './components/Menu'
-import NavBar from './components/NavBar'
-import Toast from './components/Toast';
+import Hero from '../layout/Hero'
+import Menu from '../layout/Menu'
+import Toast from '../components/Toast';
+import Layout from '../layout/Layout';
 
 
 function App() {
@@ -18,13 +17,11 @@ function App() {
   const handleToastClose = () => setToastMessage("");
 
   return (
-    <>
-      <NavBar orderQuantity={orderQuantity}/>
+    <Layout orderQuantity={orderQuantity}>
       <Hero />
       <Menu onAddToOrder={handleAddToOrder}/>
       {toastMessage && <Toast onClose={handleToastClose} />}
-      <Footer />
-    </>
+    </Layout>
   )
 }
 
