@@ -3,7 +3,7 @@ import { localDB } from "../db/pouchdb";
 
 export interface Order {
   _id?: string;
-  _rev?: string;
+  _rev?: string; 
   date: string;
   time: string;
   paymentType: string;
@@ -26,6 +26,7 @@ export interface NewOrderForm {
 export function useOrders() {
   const [orders, setOrders] = useState<Order[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
+  const [selectedOrder, setSelectedOrder] = useState<Order | null>(null); 
   const [form, setForm] = useState<NewOrderForm>({
     date: "",
     time: "",
@@ -56,7 +57,6 @@ export function useOrders() {
     const sortedOrders = transformedOrders.sort((a, b) => {
         const dateA = new Date(`${a.date}T${a.time}`).getTime();
         const dateB = new Date(`${b.date}T${b.time}`).getTime();
-        
         return dateB - dateA; 
     });
 
@@ -76,29 +76,62 @@ export function useOrders() {
     return () => changes.cancel();
   }, [fetchOrders]);
 
+  const selectOrder = (order: Order) => {
+    setSelectedOrder(order);
+    setForm({
+        date: order.date,
+        time: order.time,
+        paymentType: order.paymentType,
+        cardDetails: order.cardDetails,
+        amount: order.amount.toFixed(2), 
+        coffeeType: order.coffeeType,
+    });
+  };
+
+  const resetForm = () => {
+    setSelectedOrder(null);
+    setForm({
+        date: "",
+        time: "",
+        paymentType: "",
+        cardDetails: "",
+        amount: "",
+        coffeeType: "",
+    });
+  }
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    const newOrderPayload = { 
+    const orderData: Order = { 
       date: form.date,
       time: form.time,
       paymentType: form.paymentType,
       cardDetails: form.cardDetails,
       amount: parseFloat(form.amount || "0"),
       coffeeType: form.coffeeType,
-    };
+    } as Order;
 
-    await localDB.post(newOrderPayload); 
+    if (selectedOrder && selectedOrder._id && selectedOrder._rev) {
+      await localDB.put({
+          ...orderData,
+          _id: selectedOrder._id,
+          _rev: selectedOrder._rev,
+      });
+    } else {
+      await localDB.post(orderData); 
+    }
 
-    setForm({
-      date: "",
-      time: "",
-      paymentType: "",
-      cardDetails: "",
-      amount: "",
-      coffeeType: "",
-    });
+    resetForm();
+  };
+
+  const handleDelete = async () => {
+      if (selectedOrder && selectedOrder._id && selectedOrder._rev) {
+          if (window.confirm(`Are you sure you want to delete the order from ${selectedOrder.date} at ${selectedOrder.time}?`)) {
+              await localDB.remove(selectedOrder._id, selectedOrder._rev);
+              resetForm(); 
+          }
+      }
   };
 
   const handleChange = (
@@ -125,8 +158,12 @@ export function useOrders() {
     totalPages,
     ordersLength: orders.length,
     itemsPerPage: ITEMS_PER_PAGE,
+    selectedOrder, 
     handleSubmit,
     handleChange,
     handlePageChange,
+    selectOrder,   
+    handleDelete, 
+    resetForm      
   };
 }

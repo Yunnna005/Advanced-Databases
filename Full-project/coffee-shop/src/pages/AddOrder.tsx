@@ -8,16 +8,24 @@ export default function AddOrder() {
     totalPages,
     ordersLength,
     itemsPerPage,
+    selectedOrder, 
     handleSubmit,
     handleChange,
     handlePageChange,
+    selectOrder,   
+    handleDelete,  
+    resetForm     
   } = useOrders();
+
+  const isEditing = !!selectedOrder; 
 
   return (
     <div className="flex flex-col md:flex-row min-h-screen bg-gray-200 p-8 gap-8 py-24">
       <div className="md:w-1/2 bg-white p-8 rounded-lg shadow-md">
-        <h1 className="text-3xl font-bold mb-6 text-gray-800">Add New Order</h1>
-        <form onSubmit={handleSubmit}>
+        <h1 className="text-3xl font-bold mb-6 text-gray-800">
+          {isEditing ? "Edit Order" : "Add New Order"}
+        </h1>
+        <form onSubmit={handleSubmit}>          
           <label className="block mb-2 text-gray-700">Date</label>
           <input id="date" type="date" value={form.date} onChange={handleChange} className="w-full mb-4 border p-2 rounded" />
 
@@ -50,9 +58,33 @@ export default function AddOrder() {
             <option value="Cocao">Cocao</option>
           </select>
 
-          <button type="submit" className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded">
-            Add Order
-          </button>
+          <div className="flex gap-4">
+            <button 
+              type="submit" 
+              className={`font-semibold py-2 px-4 rounded ${isEditing ? "bg-green-600 hover:bg-green-700" : "bg-blue-600 hover:bg-blue-700"} text-white`}
+            >
+              {isEditing ? "Update Order" : "Add Order"}
+            </button>
+
+            {isEditing && (
+              <>
+                <button 
+                  type="button" 
+                  onClick={handleDelete}
+                  className="bg-red-600 hover:bg-red-700 text-white font-semibold py-2 px-4 rounded"
+                >
+                  Delete
+                </button>
+                <button 
+                  type="button" 
+                  onClick={resetForm}
+                  className="bg-gray-400 hover:bg-gray-500 text-gray-800 font-semibold py-2 px-4 rounded"
+                >
+                  Cancel Edit
+                </button>
+              </>
+            )}
+          </div>
         </form>
       </div>
 
@@ -72,7 +104,11 @@ export default function AddOrder() {
           <tbody>
             {currentOrders.length > 0 ? (
               currentOrders.map((order) => (
-                <tr key={order._id} className="hover:bg-gray-50">
+                <tr 
+                  key={order._id} 
+                  onClick={() => selectOrder(order)}
+                  className={`cursor-pointer hover:bg-blue-50 ${selectedOrder?._id === order._id ? 'bg-blue-100' : 'bg-white'}`}
+                >
                   <td className="border p-2">{order.date}</td>
                   <td className="border p-2">{order.time}</td>
                   <td className="border p-2">{order.paymentType}</td>
