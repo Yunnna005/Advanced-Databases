@@ -9,4 +9,12 @@ export default defineConfig({
         host: "127.0.0.1",
         port: 3000,
     },
+    resolve: {
+    alias: {
+      events: "events/",
+    },
+    },
+    define: {
+        "process.env": {},
+    },
 })
