@@ -211,6 +211,7 @@ __marimo__/
 package-lock.json
 package.json
 
+#PouchDB
 # Logs
 logs
 *.log
@@ -236,3 +237,30 @@ build/Release
 # Deployed apps should consider commenting this line out:
 # see https://npmjs.org/doc/faq.html#Should-I-check-my-node_modules-folder-into-git
 node_modules
+
+#Vite
+.DS_Store
+.idea
+.pnpm-store
+*.cpuprofile
+*.local
+*.log
+/.vscode/
+/docs/.vitepress/cache
+/packages/vite/LICENSE
+dist
+dist-ssr
+explorations
+node_modules
+playground-temp
+temp
+TODOs.md
+.eslintcache
+
+# Tailwind
+.log/
+node_modules/
+docs/
+css/
+export.scss
+export/
