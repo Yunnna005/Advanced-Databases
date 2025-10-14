@@ -134,10 +134,20 @@ export function useOrders() {
       }
   };
 
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
-  ) => {
-    setForm({ ...form, [e.target.id]: e.target.value });
+  function handleChange(e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) {
+    const { id, value } = e.target;
+    setForm((prev) => {
+      if (id === "paymentType" && value === "Cash") {
+        return { ...prev, paymentType: value, cardDetails: "Paid with cash" };
+      }
+      if (id === "paymentType" && value !== "Cash") {
+        return { ...prev, paymentType: value, cardDetails: "" };
+      }
+      if (id === "cardDetails" && prev.paymentType === "Cash") {
+        return prev;
+      }
+      return { ...prev, [id]: value };
+    });
   };
   
   const totalPages = Math.ceil(orders.length / ITEMS_PER_PAGE);
