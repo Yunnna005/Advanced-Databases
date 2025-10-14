@@ -1,5 +1,8 @@
 import { useOrders } from "../hook/usePouchDB"; 
 
+// Get today's date in YYYY-MM-DD format
+const today = new Date().toISOString().split("T")[0];
+
 export default function AddOrder() {
   const {
     currentOrders,
@@ -27,7 +30,14 @@ export default function AddOrder() {
         </h1>
         <form onSubmit={handleSubmit}>          
           <label className="block mb-2 text-gray-700">Date</label>
-          <input id="date" type="date" value={form.date} onChange={handleChange} className="w-full mb-4 border p-2 rounded" />
+          <input
+            id="date"
+            type="date"
+            value={form.date}
+            onChange={handleChange}
+            className="w-full mb-4 border p-2 rounded"
+            max={today}
+          />
 
           <label className="block mb-2 text-gray-700">Time</label>
           <input id="time" type="time" value={form.time} onChange={handleChange} className="w-full mb-4 border p-2 rounded" />
