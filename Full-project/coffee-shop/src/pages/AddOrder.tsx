@@ -53,7 +53,16 @@ export default function AddOrder() {
           <input id="cardDetails" type="text" placeholder="**** **** **** 1234" value={form.cardDetails} onChange={handleChange} className="w-full mb-4 border p-2 rounded" />
 
           <label className="block mb-2 text-gray-700">Amount (€)</label>
-          <input id="amount" type="number" step="0.01" placeholder="Enter amount" value={form.amount} onChange={handleChange} className="w-full mb-4 border p-2 rounded" />
+          <input
+            id="amount"
+            type="number"
+            step="0.01"
+            max={5.5}
+            placeholder="Enter amount"
+            value={form.amount}
+            onChange={handleChange}
+            className="w-full mb-4 border p-2 rounded"
+          />
 
           <label className="block mb-2 text-gray-700">Coffee Type</label>
           <select id="coffeeType" value={form.coffeeType} onChange={handleChange} className="w-full mb-4 border p-2 rounded">

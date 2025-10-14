@@ -79,12 +79,15 @@ export function useOrders() {
   const selectOrder = (order: Order) => {
     setSelectedOrder(order);
     setForm({
-        date: order.date,
-        time: order.time,
-        paymentType: order.paymentType,
-        cardDetails: order.cardDetails,
-        amount: order.amount.toFixed(2), 
-        coffeeType: order.coffeeType,
+      date: order.date,
+      time: order.time,
+      paymentType: order.paymentType === "Cash" ? "Cash" : "Card",
+      cardDetails:
+        order.paymentType === "Cash"
+          ? "Paid with cash"
+          : order.cardDetails,
+      amount: order.amount.toString(),
+      coffeeType: order.coffeeType,
     });
   };
 
