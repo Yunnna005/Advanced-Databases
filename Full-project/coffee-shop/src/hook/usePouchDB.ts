@@ -41,7 +41,7 @@ export function useOrders() {
     
     const transformedOrders = res.rows
       .map((r) => r.doc)
-      .filter(doc => doc !== null && doc !== undefined)
+      .filter(doc => doc && !doc._id.startsWith("_design/")) 
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       .map((doc: any) => ({
         _id: doc._id,
@@ -106,14 +106,14 @@ export function useOrders() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    const orderData: Order = { 
+    const orderData: Order = {
       date: form.date,
       time: form.time,
-      paymentType: form.paymentType,
-      cardDetails: form.cardDetails,
-      amount: parseFloat(form.amount || "0"),
-      coffeeType: form.coffeeType,
-    } as Order;
+      payment_type: form.paymentType,
+      card: form.cardDetails, 
+      amount_eur: parseFloat(form.amount || "0"), 
+      coffee_type: form.coffeeType, 
+    } as unknown as Order;
 
     if (selectedOrder && selectedOrder._id && selectedOrder._rev) {
       await localDB.put({
