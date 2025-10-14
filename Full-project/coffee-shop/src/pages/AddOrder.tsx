@@ -52,6 +52,24 @@ export default function AddOrder() {
           <label className="block mb-2 text-gray-700">Card Details</label>
           <input id="cardDetails" type="text" placeholder="**** **** **** 1234" value={form.cardDetails} onChange={handleChange} className="w-full mb-4 border p-2 rounded" />
 
+          <label className="block mb-2 text-gray-700">Coffee Type</label>
+          <select
+            id="coffeeType"
+            value={form.coffeeType}
+            onChange={handleChange}
+            className="w-full mb-4 border p-2 rounded"
+          >
+            <option value="">Select coffee type</option>
+            <option value="Americano">Americano</option>
+            <option value="Americano with milk">Americano with milk</option>
+            <option value="Latte">Latte</option>
+            <option value="Cappuccino">Cappuccino</option>
+            <option value="Espresso">Espresso</option>
+            <option value="Cortado">Cortado</option>
+            <option value="Hot Chocolate">Hot Chocolate</option>
+            <option value="Cocao">Cocao</option>
+          </select>
+
           <label className="block mb-2 text-gray-700">Amount (€)</label>
           <input
             id="amount"
@@ -63,19 +81,6 @@ export default function AddOrder() {
             onChange={handleChange}
             className="w-full mb-4 border p-2 rounded"
           />
-
-          <label className="block mb-2 text-gray-700">Coffee Type</label>
-          <select id="coffeeType" value={form.coffeeType} onChange={handleChange} className="w-full mb-4 border p-2 rounded">
-            <option value="">Select coffee type</option>
-            <option value="Americano">Americano</option>
-            <option value="Americano with milk">Americano with milk</option>
-            <option value="Latte">Latte</option>
-            <option value="Cappuccino">Cappuccino</option>
-            <option value="Espresso">Espresso</option>
-            <option value="Cortado">Cortado</option>
-            <option value="Hot Chocolate">Hot Chocolate</option>
-            <option value="Cocao">Cocao</option>
-          </select>
 
           <div className="flex gap-4">
             <button 

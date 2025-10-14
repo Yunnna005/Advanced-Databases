@@ -36,6 +36,18 @@ export function useOrders() {
     coffeeType: ""
   });
 
+  const COFFEE_PRICES: Record<string, number> = {
+  Americano: 2.5,
+  "Americano with milk": 3.0,
+  Latte: 3.5,
+  Cappuccino: 3.5,
+  Espresso: 3.0,
+  Cortado: 3.5,
+  "Hot Chocolate": 3.5,
+  Cocao: 3.5,
+  };
+
+
   const fetchOrders = useCallback(async () => {
     const res = await localDB.allDocs({ include_docs: true });
     
@@ -139,16 +151,28 @@ export function useOrders() {
 
   function handleChange(e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) {
     const { id, value } = e.target;
-    setForm((prev) => {
+
+  setForm((prev) => {
+      if (id === "coffeeType") {
+        const newAmount =
+          !selectedOrder && COFFEE_PRICES[value] !== undefined
+            ? COFFEE_PRICES[value].toString()
+            : prev.amount;
+        return { ...prev, coffeeType: value, amount: newAmount };
+      }
+
       if (id === "paymentType" && value === "Cash") {
         return { ...prev, paymentType: value, cardDetails: "Paid with cash" };
       }
+
       if (id === "paymentType" && value !== "Cash") {
         return { ...prev, paymentType: value, cardDetails: "" };
       }
+
       if (id === "cardDetails" && prev.paymentType === "Cash") {
         return prev;
       }
+
       return { ...prev, [id]: value };
     });
   };
