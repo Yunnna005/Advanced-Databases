@@ -2,7 +2,7 @@ import MenuItem from "./Menu-item";
 
 export default function Menu() {
     return (
-        <section className="py-8 px-4 mx-auto max-w-screen-xl text-center lg:py-16 lg:px-12">
+        <section id="menu" className="py-8 px-4 mx-auto max-w-screen-xl text-center lg:py-16 lg:px-12">
         <h1 className="mb-4 text-4xl text-slate-800 font-extrabold tracking-tight leading-none md:text-5xl lg:text-6xl">Our Menu</h1>
         <p className="mb-8 text-lg text-slate-700 font-normal lg:text-xl sm:px-16 xl:px-48">Explore our diverse menu of expertly crafted coffee beverages, from classic espresso to innovative seasonal specials, all made with the finest ethically sourced beans.</p>
         <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
