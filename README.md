@@ -25,7 +25,7 @@ cd Advanced-Databases
 ├── client_project/
 ├── coffee_shop_offline_app/
 ├── Dataset/
-└── Docs/
+└── Documents/
 ```
 
 ## Client Side Project
