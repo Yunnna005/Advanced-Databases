@@ -1,2 +1,0 @@
-couchdb-python==1.2
-redis==4.5.4

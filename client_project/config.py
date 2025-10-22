@@ -11,3 +11,6 @@ class Config:
     REDIS_PASSWORD = os.getenv("REDIS_PASSWORD", None)
     
     CACHE_TTL = int(os.getenv("CACHE_TTL", "300")) 
+
+    DATABASE_NAME = os.getenv("DATABASE_NAME", "coffee_shop")
+    

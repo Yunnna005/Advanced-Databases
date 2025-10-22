@@ -95,7 +95,7 @@ def main():
     try:
         db_client = DatabaseClient()
         
-        database_name = "coffee_shop"
+        database_name = Config.DATABASE_NAME
         doc_id = "2b41fc9495f223d12473fe3abd00011d" 
         
         print("\nFirst request (cache miss expected):")
